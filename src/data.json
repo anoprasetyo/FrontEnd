@@ -1,0 +1,24 @@
+{
+    "id" : 1,
+    "nama": "Maxx Popok",
+    "merk": "Maxx",
+    "description": "Popok rasa susu",
+    "harga": 500000,
+    "img": null
+},
+{
+    "id" : 2,
+    "nama": "Popok Uchiha",
+    "merk": "Uchiha",
+    "description": "Popok Hokage Kebanggaan Tsunnade",
+    "harga": 500000,
+    "img": null
+},
+{
+    "id" : 3,
+    "nama": "Ranch Popok",
+    "merk": "Ranch",
+    "description": "Ketika popok adalah teman dekat dari ayah keponakan ibu tiri dari nenek istri kedua mantan kakekku",
+    "harga": 500000,
+    "img"
+}
