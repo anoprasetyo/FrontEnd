@@ -85,7 +85,7 @@ class ManageCategories extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-12 text-center">
-                        <h2 className="section-heading text-uppercase">Manage Popok</h2>
+                        <h2 className="section-heading">Manage Popok</h2>
                     </div>
                 </div>
                 <center>

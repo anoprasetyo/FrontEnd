@@ -77,7 +77,7 @@ class ConnnectMoviesCategories extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-12 text-center">
-                        <h2 className="section-heading text-uppercase">Connect Movies and Categories</h2>
+                        <h2 className="section-heading">Connect Movies and Categories</h2>
                     </div>
                 </div>
                 <center>
