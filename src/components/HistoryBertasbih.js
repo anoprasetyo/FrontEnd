@@ -1,36 +1,64 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 class HistoryBertasbih extends Component {
-    state = { ListHistory: [], ListCart: [] }
+    state = { transaksiList: [], transaksiDetailList: [] }
+
     componentDidMount() {
-        this.getHistoryList();
+        axios.get('http://localhost:2000/transaksi', {
+            params: {
+                username: this.props.username
+            }
+        }).then((res) => {
+            this.setState({ transaksiList: res.data })
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
-
-    getHistoryList = () => {
-        axios.get('http://localhost:2000/history')
-            .then((res) => {
-                this.setState({ ListHistory: res.data })
-            }).catch((err) => {
-                console.log(err)
-            })
+    onBtnDetailClick = (id) => {
+        axios.get('http://localhost:2000/transaksiItem', {
+            params: {
+                transaksiId: id 
+            }
+        }).then((res) => {
+            this.setState({ transaksiDetailList: res.data })
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
-    renderHistory = () => {
-        var listJSXhistory = this.state.ListHistory.map(({ id, username, tanggal, quantity, total }) => {
+    renderBodyTransaksi = () => {
+        var listJSXTransaksi = this.state.transaksiList.map((item) => {
             return (
-                <tr>
-                    <td>{id}</td>
-                    <td>{username}</td>
-                    <td>{tanggal}</td>
-                    <td>{quantity}</td>
-                    <td>{total}</td>
-                </tr>
-            )
+                <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.username}</td>
+                    <td>{item.tglTransaksi}</td>
+                    <td>{item.totalItem}</td>
+                    <td>Rp. {item.totalPrice}</td>
+                    <td><input className="btn btn-primary" type="button" value="Detail" onClick={() => this.onBtnDetailClick(item.id)} /></td>
+                </tr> )
             
         })
-        return listJSXhistory;
+        return listJSXTransaksi;
+    }
+
+    renderBodyDetailTransaksi = () => {
+        var listJSXTransaksi = this.state.transaksiDetailList.map((item) => {
+            return (
+                <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.popokId}</td>
+                    <td>{item.nama}</td>
+                    <td><img src={item.img} width="50px" alt={item.id} /></td>
+                    <td>Rp. {item.harga}</td>
+                    <td>{item.quantity}</td>
+                </tr> )
+            
+        })
+        return listJSXTransaksi;
     }
 
     render() {
@@ -38,7 +66,7 @@ class HistoryBertasbih extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-12 text-center">
-                        <h2 className="section-heading text-uppercase">History</h2>
+                        <h1 className="section-heading text-uppercase">History</h1>
                     </div>
                 </div>
                 <center>
@@ -46,16 +74,31 @@ class HistoryBertasbih extends Component {
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nama</th>
+                                <th>Username</th>
                                 <th>Tanggal Transaksi</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th></th>
+                                <th>Total Item</th>
+                                <th>Total Price</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            { this.renderHistory() }
+                            {this.renderBodyTransaksi()}
+                        </tbody>
+                    </table>
+                    <h2>Detail Transaksi</h2>
+                    <table style={{ marginTop: '30px'}}>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Popok Id</th>
+                                <th>Nama</th>
+                                <th>Image</th>
+                                <th>Harga</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.renderBodyDetailTransaksi()}
                         </tbody>
                     </table>
                 </center>
@@ -64,4 +107,8 @@ class HistoryBertasbih extends Component {
     }
 }
 
-export default HistoryBertasbih;
+const mapStateToProps = (state) => {
+    return { username: state.auth.username }
+}
+
+export default connect(mapStateToProps)(HistoryBertasbih);

@@ -13,6 +13,8 @@ import HomeBertasbih from './components/HomeBertasbih';
 import RegisterBertasbih from './components/RegisterBertasbih.jsx';
 import ListProduct from './components/ListProduct';
 import ManageProduct from './components/ManageProduct';
+import ManageCategories from './components/ManageCategories';
+import ConnectMoviesCategories from './components/ConnectMoviesCategories';
 import ProductDetails from './components/ProductDetails';
 import Cookies from 'universal-cookie';
 import CartBertasbih from './components/CartBertasbih';
@@ -48,6 +50,8 @@ class App extends Component {
               <Route path="/Register" component={ RegisterBertasbih }/>
               <Route path="/ListProduct" component={ ListProduct }/>
               <Route path="/ManageProduct" component={ ManageProduct }/>
+              <Route path="/ManageCategories" component={ ManageCategories }/>
+              <Route path="/ConnectMoviesCategories" component={ ConnectMoviesCategories }/>
               <Route path="/ProductDetails" component={ ProductDetails } />
               <Route path="/Cart" component={ CartBertasbih } />
               <Route path="/History" component={ HistoryBertasbih } />

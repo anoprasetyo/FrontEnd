@@ -6,7 +6,7 @@ class HomeBertasbih extends Component {
     state = { ListProduct: [] };
 
     componentDidMount() {
-        var kacrut = axios.get('http://localhost:2000/popok')
+        var kacrut = axios.get('http://localhost:2000/products')
             kacrut.then((res) => {
                 this.setState({ ListProduct: res.data })
             }).catch((err) => {

@@ -48,9 +48,6 @@ class Headertest extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <Link to="/ListProduct"><NavLink>Browse Product</NavLink></Link>
-                            </NavItem>
-                            <NavItem>
                                 <Link to="/Register"><NavLink>Register</NavLink></Link>
                             </NavItem>
                             <NavItem>
@@ -70,16 +67,19 @@ class Headertest extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/ListProduct">Browse Product</NavLink>
+                                <NavLink href="/ManageProduct">Manage Movies</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/ManageCategories">Manage Categories</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/ConnectMoviesCategories">Connect Movies and Categories</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
                                     Hello, { this.props.username }
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem>
-                                        <Link to="/ManageProduct">Manage Product</Link>
-                                    </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem onClick={ this.onLogOutSelect }>
                                         Logout
